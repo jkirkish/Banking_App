@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+		<title>Checking Transactions</title>
+	</head>
+	<body>
+		<h1>Checking Transactions</h1>
+		
+		<div th:if="${#lists.size(transactions) == 1}">
+			<form action="" method="post">
+				<input type="hidden" th:field="${transaction.transactionId}"/>
+					<div>
+						Date: <input type="text" th:field="${transaction.transactionDate}" />
+					</div>
+					<div>
+						Amount: <input type="text" th:field="${transaction.amount}" />
+					</div>
+					<div>
+						Type: <input type="text" th:field="${transaction.type}" />
+					</div>
+					<input type="hidden" th:field="${transaction.account.accountId}"/>
+					<div style="margin-top: 1em;">
+					<input type="submit" value="Update Checking Account" />
+				</div>
+			</form>
+			<form th:action="@{/transactions/{transactionId}/delete(transactionId=${transaction.transactionId})}" method="post">
+				<input type="submit" value="Delete Transaction" />
+			</form>
+			<div style="margin-top: 1em;">
+				<a href="/users">Back</a>
+			</div>
+		</div>
+		<div th:unless="${#lists.size(transactions) == 1}" th:each="transaction : ${transactions}">
+		 	<a th:href="@{/transactions/{transactionId}(transactionId=${transaction.transactionId})}" th:text="${transaction.transactionId}"></a><br/>
+				<span th:text="${transaction.transactionDate}"></span><br/>
+				<span th:text="${transaction.amount}"></span><br/>
+				<span th:text="${transaction.type}"></span>
+		</div>
+		<hr/>
+	</body>
+</html>

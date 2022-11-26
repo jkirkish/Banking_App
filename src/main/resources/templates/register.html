@@ -2,24 +2,32 @@
 <html xmlns:th="http://thymeleaf.org">
 	<head>
 		<title>Create Account</title>
+		<link rel="stylesheet" href="/css/register.css"/>
 	</head>
 	<body>
-		<h1>Create Your Account</h1>
-		
-		<form action="" method="post">
-			<div>
-				Username: <input type="text" th:field="${user.username}" />
-			</div>
-			<div>
-				Password: <input type="password" th:field="${user.password}" />
-			</div>
-			<div>
-				Full Name: <input type="text" th:field="${user.name}" />
-			</div>
-			<div>
-				<input type="submit" value="Create Account" />
-			</div>
-		</form>
-		<a href="/users">Return to Users</a>
+	<div class="signInBox">
+		<div class="title">
+			<h1>Register Your Profile</h1>
+		</div>
+		<div class="form">
+			<form action="" method="post">
+				<div>
+					<label>Username:</label> <input type="text" id="uname" th:field="${user.username}" />
+				</div>
+				<div>
+					<label>Password:</label> <input type="password" id="pass"th:field="${user.password}" />
+				</div>
+				<div>
+					<label>Full Name:</label> <input type="text" id="fname" th:field="${user.name}" />
+				</div>
+				<div>
+					<input type="submit" id="sub" value="Create Account" />
+				</div>
+			</form>
+		</div>
+		<div class="return">
+			<a href="/users">Return to Users</a>
+		</div>
+	</div>
 	</body>
 </html>

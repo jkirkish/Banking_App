@@ -2,74 +2,78 @@
 <html xmlns:th="http://thymeleaf.org">
 	<head>
 		<title>Users</title>
-		<link rel="stylesheet" href="/css/users.css"/>
 	</head>
 	<body>
-		<div>
+		<div class="User">
 			<h1>Users</h1>
 				<div th:unless="${#lists.size(users) == 1}">
 			</div>
 		</div>
-		<div th:if="${#lists.size(users) == 1}">
+		<div class="formInputs" th:if="${#lists.size(users) == 1}">
 			<form action="" method="post">
-				<div>
+				<div id="username">
 					Username: <input type="text" th:field="${user.username}" />
 				</div>
-				<div>
+				<div id="password">
 					Password: <input type="password" th:field="${user.password}" />
 				</div>
-				<div>
+				<div id="fullName">
 					Full Name: <input type="text" th:field="${user.name}" />
 				</div>
 				<hr>
-				<div>
+				<div id="Address1">
 					Address Line 1: <input type="text" th:field=${user.address.addressLine1}>
 				</div>
-				<div>
+				<div id="Address2">
 					Address Line 2: <input type="text" th:field=${user.address.addressLine2}>
 				</div>
-				<div>
+				<div id="City">
 					City: <input type="text" th:field="${user.address.city}">
 				</div>
-				<div>
+				<div id="region">
 					Region: <input type="text" th:field="${user.address.region}">
 				</div>
-				<div>
+				<div id="Country">
 					Country: <input type="text" th:field="${user.address.country}">
 				</div>
-				<div>
+				<div id="zip">
 					ZipCode: <input type="text" th:field="${user.address.zipCode}">
 				</div>
-				<div>
+				<div id="hiddenUA">
 					<input type="hidden" th:field="${user.accounts}">				
 				</div>
 				
-				<div>
+				<div id="updateUser">
 					<input type="submit" value="Update User Account" />
 				</div>
 			</form>
-			<form th:action="@{/users/{userId}/delete(userId=${user.userId})}" method="post">
-				<input type="submit" value="Delete User Account" />
-			</form>
+			<div id="deleteU">
+				<form th:action="@{/users/{userId}/delete(userId=${user.userId})}" method="post">
+					<input type="submit" value="Delete User Account" />
+				</form>
+			</div>
 			<hr>
-			<h1>Accounts</h1>
+			<div id="Acounts">
+				<h1>Accounts</h1>
+			</div>
 			<div th:each="account:${user.accounts}">
 				<a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}">
 					<span th:text="${account.accountName}"></span>
 				</a>
 			</div>
-			<form th:action="@{/users/{userId}/accounts(userId=${user.userId})}" method="post">
-				
-				<div>				
-					<input type="submit" value="Create New Bank Account">
-				</div>
-			</form>
-			
-			
-			<a href="/users" >Back</a>
+			<div id="CreateBank">
+				<form th:action="@{/users/{userId}/accounts(userId=${user.userId})}" method="post">
+					<div >				
+						<input type="submit" id="sub" value="Create New Bank Account">
+					</div>
+				</form>
+			</div>
+			<div id="link">
+				<a href="/users" >Back</a>
+			</div>
 		</div>
 		
-		<div th:unless="${#lists.size(users) == 1}" th:each="user : ${users}">
+		<div class="listUsers" th:unless="${#lists.size(users) == 1}" th:each="user : ${users}">
 			<a th:href="@{/users/{userId}(userId=${user.userId})}" type="text" >[[${user.userId}]]</a><br>
 			<span th:text="${user.username}"></span><br/>
 			<span th:text="${user.name}"></span><br/>
@@ -81,6 +85,8 @@
 			</div>
 			<hr/>
 		</div>
-		<a href="/register">Register</a>
+		<div id="registerLink">
+			<a href="/register">Register</a>
+		</div>
 	</body>
 </html>

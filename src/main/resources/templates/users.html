@@ -85,7 +85,7 @@
 		</div>
 		
 		<div class="listUsers" th:unless="${#lists.size(users) == 1}" th:each="user : ${users}">
-			<a th:href="@{/users/{userId}(userId=${user.userId})}" type="text" >[[${user.userId}]]</a><br>
+			<a style="font-size: 23px;" th:href="@{/users/{userId}(userId=${user.userId})}" type="text" >[[${user.userId}]]</a><br>
 			<label style="color:green;">User name: </label><span style="font-size: 23px;" th:text="${user.username}"></span><br/>
 			<label style="color:green;">Name: </label><span style="font-size: 23px;" th:text="${user.name}"></span><br/>
 			<label style="color:green;">Password: </label><span style="visibility:hidden;" th:text="${user.password}"></span><br/>
@@ -97,13 +97,13 @@
 			<label style="color:green;">Zip Code: </label><span style="font-size: 23px;" th:text="${user.address.zipCode}"></span>
 			<div th:each="account : ${user.accounts}">
 				<a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}">
-					<span th:text="${account.accountName}"></span>
+					<span style="font-size: 23px;" th:text="${account.accountName}"></span>
 				</a>
 			</div>
 			<hr/>
 		</div>
-		<div id="registerLink">
-			<a href="/register">Register</a>
+		<div >
+			<a style="font-size: 23px;" href="/register">Register</a>
 		</div>
 	</body>
 </html>

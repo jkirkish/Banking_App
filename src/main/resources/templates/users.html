@@ -76,9 +76,15 @@
 		
 		<div class="listUsers" th:unless="${#lists.size(users) == 1}" th:each="user : ${users}">
 			<a th:href="@{/users/{userId}(userId=${user.userId})}" type="text" >[[${user.userId}]]</a><br>
-			<span th:text="${user.username}"></span>
-			<span th:text="${user.name}"></span><br/>
-			<span th:text="${user.password}"></span>
+			<label>User name: </label><span th:text="${user.username}"></span><br/>
+			<label>Name: </label><span th:text="${user.name}"></span><br/>
+			<label>Password: </label><span th:text="${user.password}"></span><br/>
+			<label>Address Line 1: </label><span th:text="${user.address.addressLine1}"></span><br/>
+			<label>Address Line 2: </label><span th:text="${user.address.addressLine2}"></span><br/>
+			<label>City: </label><span th:text="${user.address.city}"></span><br/>
+			<label>Region: </label><span th:text="${user.address.region}"></span><br/>
+			<label>Country: </label><span th:text="${user.address.country}"></span><br/>
+			<label>Zip Code: </label><span th:text="${user.address.zipCode}"></span>
 			<div th:each="account : ${user.accounts}">
 				<a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}">
 					<span th:text="${account.accountName}"></span>

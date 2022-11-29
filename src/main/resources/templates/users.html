@@ -11,6 +11,8 @@
 		}
 		label{
 		   font-size: 25px;
+		   display: inline-block;
+		   width: 185px;
 		}
 		</style>
 	</head>
@@ -21,37 +23,46 @@
 			</div>
 		</div>
 		<div style="text-align:center;" th:if="${#lists.size(users) == 1}">
-			<form action="" method="post">
+			<form  action="" method="post">
 				<div>
-					<label>Username</label>: <input type="text" th:field="${user.username}" />
+					<label for="Username">Username:</label> 
+					<input type="text" id="Username" placeholder="Enter your username" th:field="${user.username}" />
 				</div>
 				<div>
-					<label>Password:</label> <input type="password" th:field="${user.password}" />
+					<label for="password">Password:</label> 
+					<input type="password" id="password" name="password" placeholder="Enter your password" th:field="${user.password}" />
 				</div>
 				<div>
-					<label>Full Name:</label> <input type="text" th:field="${user.name}" />
+					<label for="Fullname">Full Name:</label> 
+					<input type="text" id="Fullname" name="FullName" placeholder="Enter your Full Name" th:field="${user.name}" />
 				</div>
 				<hr>
 				<div>
-					<label>Address Line 1:</label> <input type="text" th:field=${user.address.addressLine1}>
+					<label for="AddresLine1">Address Line 1:</label>
+					 <input type="text" id="AddresLine1" name="AddresLine1" placeholder="Enter your Address Line 1" th:field=${user.address.addressLine1}/>
 				</div>
 				<div>
-					<label>Address Line 2:</label> <input type="text" th:field=${user.address.addressLine2}>
+					<label for="AddresLine2">Address Line 2:</label> 
+					<input type="text" id="AddresLine2" name="AddresLine2" placeholder="Enter your Address Line 2" th:field=${user.address.addressLine2}/>
 				</div>
 				<div>
-					<label>City:</label> <input type="text" th:field="${user.address.city}">
+					<label for="city">City:</label> 
+					<input type="text" id="city" name="city" placeholder="Enter your City" th:field="${user.address.city}"/>
 				</div>
 				<div>
-					<label>Region:</label> <input type="text" th:field="${user.address.region}">
+					<label for="region">Region:</label>
+					 <input type="text" id="region" name="region" placeholder="Enter your Region" th:field="${user.address.region}"/>
 				</div>
 				<div>
-					<label>Country:</label> <input type="text" th:field="${user.address.country}">
+					<label for="country">Country:</label> 
+					<input type="text" id="country" name="country" placeholder="Enter your country" th:field="${user.address.country}"/>
 				</div>
 				<div>
-					<label>ZipCode:</label> <input type="text" th:field="${user.address.zipCode}">
+					<label for="zipCode">ZipCode:</label>
+					 <input type="text" id="zipCode" name="zipCode" placeholder="Enter your zip code" th:field="${user.address.zipCode}"/>
 				</div>
 				<div>
-					<input type="hidden" th:field="${user.accounts}">				
+					<input type="hidden" th:field="${user.accounts}"/>				
 				</div>
 				
 				<div>
@@ -59,7 +70,7 @@
 				</div>
 			</form>
 			<div>
-				<form th:action="@{/users/{userId}/delete(userId=${user.userId})}" method="post">
+				<form th:action="@{/users/{userId}/delete(userId=${user.userId})}" method="post"/>
 					<input type="submit" value="Delete User Account" />
 				</form>
 			</div>
@@ -68,7 +79,7 @@
 				<h1 style="color:blue;">Accounts</h1>
 			</div>
 			<div th:each="account:${user.accounts}">
-				<a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}">
+				<a style="font-size: 23px;"th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}">
 					<span th:text="${account.accountName}"></span>
 				</a>
 			</div>
@@ -80,7 +91,7 @@
 				</form>
 			</div>
 			<div>
-				<a href="/users" >Back</a>
+				<a style="font-size: 23px;" href="/users" >Back</a>
 			</div>
 		</div>
 		

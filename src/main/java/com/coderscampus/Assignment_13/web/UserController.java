@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.coderscampus.Assignment_13.domain.Account;
 import com.coderscampus.Assignment_13.domain.User;
 import com.coderscampus.Assignment_13.service.UserService;
 
@@ -60,6 +61,12 @@ public class UserController {
 	public String deleteOneUser (@PathVariable Long userId) {
 		userService.delete(userId);
 		return "redirect:/users";
+	}
+	@PostMapping("/users/{userId}/accounts/{accountId}")
+	public String updateAccount(@PathVariable Long userId, @PathVariable Long accountId, Account account, User user) {
+		User userUpdate = userService.saveAccount(account, user);
+		userService.saveUser(userUpdate);
+		return "redirect:/users/" + userId + "/accounts/" + accountId;
 	}
 }
 

@@ -90,5 +90,13 @@ public class UserService {
 	public void delete(Long userId) {
 		userRepo.deleteById(userId);
 	}
-
+	public User saveAccount(Account account, User user) {
+		
+		for(Account acc: user.getAccounts()) {
+			if(acc.getAccountId().equals(account.getAccountId())) {
+				acc.setAccountName(account.getAccountName());
+			}
+		}
+		return user;
+	}
 }

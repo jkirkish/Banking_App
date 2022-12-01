@@ -38,11 +38,6 @@ public class AccountController {
 		userService.saveUser(user);
 		return "redirect:/users/" + userId + "/accounts/" + accountNum;
 	}
-	@PostMapping("/users/{userId}/accounts/{accountId}")
-	public String updateAccount(@PathVariable Long userId, @PathVariable Long accountId, Account account, User user) {
-		User userUpdate = accountService.saveAccount(account, user);
-		userService.saveUser(userUpdate);
-		return "redirect:/users/" + userId + "/accounts/" + accountId;
-	}
+	
 
 }

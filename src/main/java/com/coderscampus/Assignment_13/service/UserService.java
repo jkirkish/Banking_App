@@ -99,4 +99,13 @@ public class UserService {
 		}
 		return user;
 	}
+
+	public User deleteAccount(Account account, User user) {
+		for(Account acc: user.getAccounts()) {
+			if(acc.getAccountId().equals(account.getAccountId())) {
+				userRepo.deleteById(acc.getAccountId());
+			}
+		}
+		return user;
+	}
 }

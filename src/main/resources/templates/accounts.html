@@ -3,15 +3,34 @@
 	<head>
 		<title>Account</title>
 		<link rel="stylesheet" href="/css/accounts.css"/>
+		<style>
+		body {
+			  background-color: LightGray;
+			  Display: inline-block;
+			  margin: 250px;
+			  text-align: center;
+			  
+			}
+		input{
+			padding: 10px 10px;
+  			margin: 8px 0;
+  			box-sizing: border-box;
+		}
+		label{
+		   font-size: 23px;
+		   display: inline-block;
+		   width: 185px;
+		}
+		</style>
 	</head>
 	<body>
-		<h3>[[${account.accountName}]]</h3>
+		<h1 style="color: purple">[[${account.accountName}]]</h1>
 		<form action="" method="post">
 			<div>
 				<input type="hidden" th:field="${user.accounts}">				
 			</div>
 			<div>
-				Account Name: <input type="text" th:field="${account.accountName}">
+				<label>Account Name:</label> <input type="text" th:field="${account.accountName}">
 			</div>
 			<div>
 				<input type="hidden" th:field="${user.username}" />
@@ -43,11 +62,9 @@
 			<div>
 				<input type="submit" value="Create Financial Account">
 			</div>
-		</form>
-		<form th:action="@{/users/{userId}/accounts(userId=${user.userId})}" method="post">
-				<input type="submit" value="Delete Account" />
-		</form>
+		
+		
 		<hr>
-		<a th:href="@{/users/{userId}(userId=${user.userId})}">Return to User</a>
+		<a style="font-size: 23px;" th:href="@{/users/{userId}(userId=${user.userId})}">Return to User</a>
 	</body>
 </html>

@@ -92,20 +92,13 @@ public class UserService {
 	}
 	public User saveAccount(Account account, User user) {
 		
-		for(Account acc: user.getAccounts()) {
-			if(acc.getAccountId().equals(account.getAccountId())) {
-				acc.setAccountName(account.getAccountName());
+		for(Account userAccount: user.getAccounts()) {
+			if(userAccount.getAccountId().equals(account.getAccountId())) {
+				userAccount.setAccountName(account.getAccountName());
 			}
 		}
 		return user;
 	}
 
-	public User deleteAccount(Account account, User user) {
-		for(Account acc: user.getAccounts()) {
-			if(acc.getAccountId().equals(account.getAccountId())) {
-				userRepo.deleteById(acc.getAccountId());
-			}
-		}
-		return user;
-	}
+	
 }

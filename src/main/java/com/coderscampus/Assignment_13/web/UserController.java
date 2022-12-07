@@ -14,18 +14,33 @@ import com.coderscampus.Assignment_13.domain.Account;
 import com.coderscampus.Assignment_13.domain.User;
 import com.coderscampus.Assignment_13.service.UserService;
 
+
+//@Controller: The @Controller is a class-level annotation. It is a specialization of @Component. 
+//It marks a class as a web request handler. It is often used to serve web pages. By default, it 
+//returns a string that indicates which route to redirect.
+//https://www.w3schools.in/mvc-architecture
+//https://www.thymeleaf.org/doc/articles/springmvcaccessdata.html
+
 @Controller
 public class UserController {
 	
+	//It is used to autowire spring bean on setter methods, instance variable, and constructor.
+	//When we use @Autowired annotation, the spring container auto-wires the bean by matching data-type.
 	@Autowired
 	private UserService userService;
 	
+	/*@GetMapping annotated methods in the @Controller annotated classes handle the HTTP GET requests 
+	 * matched with given URI expression
+	 */
 	@GetMapping("/register")
 	public String getCreateUser (ModelMap model) {
 		model.put("user", new User());
 		return "register";
 	}
-	
+	/*POST is used to send data to a server to create/update a resource. The data sent to the server with
+	 *POST is stored in the request body of the HTTP request: POST /test/demo_form.php HTTP/1.1
+	 * 
+	 */
 	@PostMapping("/register")
 	public String postCreateUser (User user) {
 		System.out.println(user);
@@ -62,6 +77,7 @@ public class UserController {
 		userService.delete(userId);
 		return "redirect:/users";
 	}
+	//this method shows all of the accounts associated with the user.  You can update the account
 	@PostMapping("/users/{userId}/accounts/{accountId}")
 	public String updateAccount(@PathVariable Long userId, @PathVariable Long accountId, Account account, User user) {
 		User userUpdate = userService.saveAccount(account, user);

@@ -18,22 +18,25 @@ import com.coderscampus.Assignment_13.repository.UserRepository;
 public class UserService {
 	
 	@Autowired
-	private UserRepository userRepo;
+	private UserRepository userRepo;//instsance variable for of type userRepository
 	@Autowired
-	private AccountRepository accountRepo;
+	private AccountRepository accountRepo;//instance variable of type AccountRepository
 	
+	//provides a list of users by their usernames in the database
 	public List<User> findByUsername(String username) {
+	
 		return userRepo.findByUsername(username);
 	}
-	
+	//provides a list of Users that match a name and username.
 	public List<User> findByNameAndUsername(String name, String username) {
 		return userRepo.findByNameAndUsername(name, username);
 	}
-	
+	//provides a list of users that are between two dates given in localDate
 	public List<User> findByCreatedDateBetween(LocalDate date1, LocalDate date2) {
 		return userRepo.findByCreatedDateBetween(date1, date2);
 	}
-	
+	//Provides a list of Users that have an exact match of one username in the database.
+	//the zero index in the list is what is returned. Otherwise a new user is given.  
 	public User findExactlyOneUserByUsername(String username) {
 		List<User> users = userRepo.findExactlyOneUserByUsername(username);
 		if (users.size() > 0)
@@ -41,16 +44,19 @@ public class UserService {
 		else
 			return new User();
 	}
-	
+	//returns a set of users that have accounts and Addresses
 	public Set<User> findAll () {
 		return userRepo.findAllUsersWithAccountsAndAddresses();
 	}
-	
+	//returns a User that matches the specified userId.  Or an optional new User to avoid null exceptions
 	public User findById(Long userId) {
 		Optional<User> userOpt = userRepo.findById(userId);
 		return userOpt.orElse(new User());
 	}
-
+    /*This method saves and return a User with a checking and Savings Account and address information to go 
+     * along with their user Id.  The user Id has to be null and address have to be null.  
+     * 
+     */
 	public User saveUser(User user) {
 		if (user.getUserId() == null) {
 			System.out.println("This is: " + (user.getUserId() == null));

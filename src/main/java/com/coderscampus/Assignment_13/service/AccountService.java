@@ -15,6 +15,9 @@ public class AccountService {
 	@Autowired
 	private AccountRepository accountRepo;
 	
+	/* This method adds an account to the user and saves to the account table
+	 * 
+	 */
 	public Long addAccount(User user) {
 		Account account = new Account();
 		Integer accountNum = user.getAccounts().size() + 1;
@@ -26,23 +29,17 @@ public class AccountService {
 	}
 
 	
-
+   /*
+    * This method streams the accounts filtering the account ID primary key associated with a user
+    */
 	public Stream<Account> findAccountById(Long accountId, User user) {
 		Stream<Account> account = user.getAccounts().stream().filter(x -> x.getAccountId().equals(accountId));
 		return account;
 	}
-
-	public User saveAccount(Account account, User user) {
-		for(Account acc: user.getAccounts()) {
-			if(acc.getAccountId().equals(account.getAccountId())) {
-				acc.setAccountName(account.getAccountName());
-			}
-		}
-		return user;
-	}
-
-
-
+   
+    /*This method finds an account by Id and and uses an Optional to avoid a null pointer exception.
+     * 
+     */
 	public Account findById(Long accountId) {
 		Optional<Account> accountOpt = accountRepo.findById(accountId);
 		return accountOpt.orElse(new Account());

@@ -54,7 +54,9 @@ public class UserService {
 		return userOpt.orElse(new User());
 	}
     /*This method saves and return a User with a checking and Savings Account and address information to go 
-     * along with their user Id.  The user Id has to be null and address have to be null.  
+     * along with their user Id.  if The user Id has to be null and address have to be null, default values are added
+     * Also a checking and savings account comes with each new user.  Otherwise the current addressed values are attached 
+     * to the user.  
      * 
      */
 	public User saveUser(User user) {
@@ -66,13 +68,23 @@ public class UserService {
 			Account savings = new Account();
 			savings.setAccountName("Savings Account");
 			savings.getUsers().add(user);
-			
+			/*the user object has getAccount() method add the checking and the savings account to the 
+			 * List of Accounts in the user object. Then the accountRepo does crud operation to save 
+			 * the account to the user object.  Users and accounts has a many to many relationship defined 
+			 * in the user object.  
+			 * 
+			 */
 			user.getAccounts().add(checking);
 			user.getAccounts().add(savings);
 			accountRepo.save(checking);
 			accountRepo.save(savings);
 		}
 		if(user.getAddress()== null) {
+		/*if the address assigned to a user is null. Then default values are given which can 
+		 * later be updated in their respective column names. The address table has a one to one
+		 * relationship defined in the user object. 
+		 * 	
+		 */
 		Address address = new Address();
 			address.setAddressLine1("");
 			address.setAddressLine2("");
@@ -92,10 +104,13 @@ public class UserService {
 		}
 		return userRepo.save(user);
 	}
-
+    /*
+     * delete a single user identified by the primary key the user id
+     */
 	public void delete(Long userId) {
 		userRepo.deleteById(userId);
 	}
+	// update the type of account the user has.  
 	public User saveAccount(Account account, User user) {
 		
 		for(Account userAccount: user.getAccounts()) {

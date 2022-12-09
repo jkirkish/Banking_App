@@ -19,13 +19,14 @@ import javax.persistence.Table;
 @Entity // Class name = User, DB Table name = user
 @Table(name = "users")
 public class User {
-	private Long userId;
+	private Long userId;//primary key of the Users table
 	private String username;
 	private String password;
 	private String name;
 	private LocalDate createdDate;
 	private List<Account> accounts = new ArrayList<>();
 	private Address address;
+	
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getUserId() {

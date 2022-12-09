@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="accounts")
 public class Account {
-	private Long accountId;
+	private Long accountId; //primary key of the accounts tables
 	private String accountName;
 	private List<Transaction> transactions = new ArrayList<>();
 	private List<User> users = new ArrayList<>();

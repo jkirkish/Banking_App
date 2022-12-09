@@ -9,7 +9,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Address {
-	private Long userId;
+	private Long userId;//primary key of the address table
 	private User user;
 	private String addressLine1;
 	private String addressLine2;

@@ -44,6 +44,14 @@ public class AccountService {
 		Optional<Account> accountOpt = accountRepo.findById(accountId);
 		return accountOpt.orElse(new Account());
 	}
-	
+	public User saveAccount(Account account, User user) {
+		//find the id where they match by currecnt account and from all accounts that teh user has and just replace old accountinfo with new account info
+		for(Account acc: user.getAccounts()) {
+			if(acc.getAccountId().equals(account.getAccountId())) {
+				acc.setAccountName(account.getAccountName());
+			}
+		}
+		return user;
+	}
 
 }

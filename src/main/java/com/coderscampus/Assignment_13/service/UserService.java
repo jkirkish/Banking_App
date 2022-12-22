@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -110,6 +111,12 @@ public class UserService {
 	public void delete(Long userId) {
 		userRepo.deleteById(userId);
 	}
+	public Stream<Account> findAccountById(Long accountId, User user) {
+		Stream<Account> account = user.getAccounts().stream().filter(x -> x.getAccountId().equals(accountId));
+		return account;
+	}
+	
+	
 	// update the type of account the user has.  
 	public User saveAccount(Account account, User user) {
 		

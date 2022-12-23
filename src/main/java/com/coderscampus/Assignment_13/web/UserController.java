@@ -2,6 +2,7 @@ package com.coderscampus.Assignment_13.web;
 
 import java.util.Arrays;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -65,6 +66,15 @@ public class UserController {
 		model.put("user", user);
 		return "users";
 	}
+	@GetMapping("/users/{userId}/accounts/{accountId}")
+	public String getAccounts(ModelMap model, @PathVariable Long userId, @PathVariable Long accountId) {
+		User user = userService.findById(userId);
+		Stream<Account> account = userService.findAccountById(accountId, user);
+		Account testAccount = account.iterator().next();
+		model.put("user", user);
+		model.put("account", testAccount);
+		return "accounts";
+	}
 	
 	@PostMapping("/users/{userId}")
 	public String postOneUser (User user) {
@@ -77,6 +87,13 @@ public class UserController {
 		userService.delete(userId);
 		return "redirect:/users";
 	}
+	@PostMapping("/users/{userId}/accounts")
+	public String postAccount(@PathVariable Long userId, User user) {
+		Long accountNum = userService.addAccount(user);
+		userService.saveUser(user);
+		return "redirect:/users/" + userId + "/accounts/" + accountNum;
+	}
+	
 	//this method shows all of the accounts associated with the user.  You can update the account
 	@PostMapping("/users/{userId}/accounts/{accountId}")
 	public String updateAccount(@PathVariable Long userId, @PathVariable Long accountId, Account account, User user) {

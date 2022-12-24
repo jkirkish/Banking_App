@@ -19,7 +19,7 @@ import com.coderscampus.Assignment_13.repository.UserRepository;
 public class UserService {
 	
 	@Autowired
-	private UserRepository userRepo;//instsance variable for of type userRepository
+	private UserRepository userRepo;//instance variable for of type userRepository
 	@Autowired
 	private AccountRepository accountRepo;//instance variable of type AccountRepository
 	
@@ -111,6 +111,7 @@ public class UserService {
 	public void delete(Long userId) {
 		userRepo.deleteById(userId);
 	}
+	//add an account to the User's profile
 	public Long addAccount(User user) {
 		Account account = new Account();
 		Integer accountNum = user.getAccounts().size() + 1;
@@ -132,9 +133,9 @@ public class UserService {
 	// update the type of account the user has.  
 	public User saveAccount(Account account, User user) {
 		
-		for(Account userAccount: user.getAccounts()) {
-			if(userAccount.getAccountId().equals(account.getAccountId())) {
-				userAccount.setAccountName(account.getAccountName());
+		for(Account acc: user.getAccounts()) {
+			if(acc.getAccountId().equals(account.getAccountId())) {
+				acc.setAccountName(account.getAccountName());
 			}
 		}
 		return user;

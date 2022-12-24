@@ -20,13 +20,14 @@
 		<div class="header1" style="text-align:center;">
 			<h1 style="color:blue;">Users</h1>
 				<div th:unless="${#lists.size(users) == 1}">
+				<a style="font-size: 23px;" href="/register">Register</a>
 			</div>
 		</div>
 		<div style="text-align:center;" th:if="${#lists.size(users) == 1}">
 			<form  action="" method="post">
 				<div>
 					<label for="Username">Username:</label> 
-					<input type="text" id="Username" placeholder="Enter your username" th:field="${user.username}" />
+					<input type="text" id="Username" name="Username" placeholder="Enter your username" th:field="${user.username}" />
 				</div>
 				<div>
 					<label for="password">Password:</label> 
@@ -39,11 +40,11 @@
 				<hr>
 				<div>
 					<label for="AddresLine1">Address Line 1:</label>
-					 <input type="text" id="AddresLine1" name="AddresLine1" placeholder="Enter your Address Line 1" th:field=${user.address.addressLine1}/>
+					 <input type="text" id="AddresLine1" name="AddresLine1" placeholder="Enter your Address Line 1" th:field="${user.address.addressLine1}"/>
 				</div>
 				<div>
 					<label for="AddresLine2">Address Line 2:</label> 
-					<input type="text" id="AddresLine2" name="AddresLine2" placeholder="Enter your Address Line 2" th:field=${user.address.addressLine2}/>
+					<input type="text" id="AddresLine2" name="AddresLine2" placeholder="Enter your Address Line 2" th:field="${user.address.addressLine2}"/>
 				</div>
 				<div>
 					<label for="city">City:</label> 
@@ -85,6 +86,38 @@
 			</div>
 			<div>
 				<form th:action="@{/users/{userId}/accounts(userId=${user.userId})}" method="post">
+				
+				<div>
+				<input type="hidden" th:field="${user.username}" />
+			</div>
+			<div>
+				<input type="hidden" th:field="${user.password}" />
+			</div>
+			<div>
+				<input type="hidden" th:field="${user.name}" />
+			</div>
+			<hr>
+			<div>
+				<input type="hidden" th:field="${user.address.addressLine1}">
+			</div>
+			<div>
+				<input type="hidden" th:field="${user.address.addressLine2}">
+			</div>
+			<div>
+				<input type="hidden" th:field="${user.address.city}">
+			</div>
+			<div>
+				<input type="hidden" th:field="${user.address.region}">
+			</div>
+			<div>
+				<input type="hidden" th:field="${user.address.country}">
+			</div>
+			<div>
+				<input type="hidden" th:field="${user.address.zipCode}">
+			</div>
+			<div>
+				<input type="hidden" th:field="${user.accounts}">				
+			</div>
 					<div >				
 						<input type="submit" id="sub" value="Create New Bank Account">
 					</div>

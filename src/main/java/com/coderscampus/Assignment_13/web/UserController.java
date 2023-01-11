@@ -58,6 +58,11 @@ public class UserController {
 		}
 		return "users";
 	}
+	@PostMapping("/users")
+	public String updateFirstUser(User user) {
+		userService.saveUser(user);
+		return "redirect:/users/"+user.getUserId();
+	}
 	
 	@GetMapping("/users/{userId}")
 	public String getOneUser (ModelMap model, @PathVariable Long userId) {
@@ -66,6 +71,15 @@ public class UserController {
 		model.put("user", user);
 		return "users";
 	}
+	
+	/*
+	 * Whitelabel Error Page
+This application has no explicit mapping for /error, so you are seeing this as a fallback.
+
+Sun Jan 08 20:17:09 EST 2023
+There was an unexpected error (type=Method Not Allowed, status=405).
+	 * 
+	 */
 	@GetMapping("/users/{userId}/accounts/{accountId}")
 	public String getAccounts(ModelMap model, @PathVariable Long userId, @PathVariable Long accountId) {
 		User user = userService.findById(userId);

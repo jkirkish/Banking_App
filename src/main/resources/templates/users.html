@@ -20,7 +20,6 @@
 		<div class="header1" style="text-align:center;">
 			<h1 style="color:blue;">Users</h1>
 				<div th:unless="${#lists.size(users) == 1}">
-				<a style="font-size: 23px;" href="/register">Register</a>
 			</div>
 		</div>
 		<div style="text-align:center;" th:if="${#lists.size(users) == 1}">

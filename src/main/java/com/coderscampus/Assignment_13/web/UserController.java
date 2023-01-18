@@ -58,11 +58,7 @@ public class UserController {
 		}
 		return "users";
 	}
-	@PostMapping("/users")
-	public String updateFirstUser(User user) {
-		userService.saveUser(user);
-		return "redirect:/users/"+user.getUserId();
-	}
+	
 	
 	@GetMapping("/users/{userId}")
 	public String getOneUser (ModelMap model, @PathVariable Long userId) {

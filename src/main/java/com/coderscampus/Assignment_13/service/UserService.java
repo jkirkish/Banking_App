@@ -100,10 +100,6 @@ public class UserService {
 		} else {
 			Address address = user.getAddress();
 			address.setUser(user);
-			if(user.getUserId() == null)
-			{
-			  user.setUserId(1L);
-			}
 			address.setUserId(user.getUserId());
 			user.setAddress(user.getAddress());
 		}

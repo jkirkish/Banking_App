@@ -45,6 +45,10 @@ public class UserService {
 		else
 			return new User();
 	}
+	public List<User>findAllUsers(){
+		return userRepo.findAll();
+	}
+	
 	//returns a set of users that have accounts and Addresses
 	public Set<User> findAll () {
 		return userRepo.findAllUsersWithAccountsAndAddresses();

@@ -31,4 +31,3 @@ import com.coderscampus.Assignment_13.domain.User;
 			+ " left join fetch u.address")
 		Set<User> findAllUsersWithAccountsAndAddresses();
 	}
-

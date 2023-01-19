@@ -26,8 +26,8 @@ public class Address {
 		this.userId = userId;
 	}
 	
-	@OneToOne
-	@MapsId
+	@OneToOne  
+	@MapsId 
 	@JoinColumn(name="user_id")
 	public User getUser() {
 		return user;
@@ -76,5 +76,11 @@ public class Address {
 	}
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
+	}
+	@Override
+	public String toString() {
+		return "Address [userId=" + userId + ", user=" + user + ", addressLine1=" + addressLine1 + ", addressLine2="
+				+ addressLine2 + ", city=" + city + ", region=" + region + ", country=" + country + ", zipCode="
+				+ zipCode + "]";
 	}
 }

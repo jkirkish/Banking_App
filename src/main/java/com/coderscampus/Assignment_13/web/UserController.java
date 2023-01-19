@@ -1,6 +1,7 @@
 package com.coderscampus.Assignment_13.web;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -58,7 +59,17 @@ public class UserController {
 		}
 		return "users";
 	}
-	
+	@PostMapping("/users")
+	public String postUpdateUser(User user) {
+	   List<User> users = userService.findAllUsers();
+	   if(users.size()== 1) {
+		   user.setUserId(1L);
+	   }
+	   System.out.println("UserId is: " + user.getUserId());
+		System.out.println(user.getAddress().toString());
+		userService.saveUser(user);
+		return "redirect:/users/"+user.getUserId();
+	}
 	
 	@GetMapping("/users/{userId}")
 	public String getOneUser (ModelMap model, @PathVariable Long userId) {
@@ -69,11 +80,6 @@ public class UserController {
 	}
 	
 	/*
-	 * Whitelabel Error Page
-This application has no explicit mapping for /error, so you are seeing this as a fallback.
-
-Sun Jan 08 20:17:09 EST 2023
-There was an unexpected error (type=Method Not Allowed, status=405).
 	 * 
 	 */
 	@GetMapping("/users/{userId}/accounts/{accountId}")
@@ -113,4 +119,3 @@ There was an unexpected error (type=Method Not Allowed, status=405).
 	}
 	
 }
-

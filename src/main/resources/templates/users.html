@@ -4,16 +4,7 @@
 		<title>Users</title>
 		<link rel="stylesheet" type="text/css" href="/css/users.css"/>
 		<style>
-		input{
-			padding: 10px 10px;
-  			margin: 8px 0;
-  			box-sizing: border-box;
-		}
-		label{
-		   font-size: 25px;
-		   display: inline-block;
-		   width: 185px;
-		}
+		
 		</style>
 	</head>
 	<body>
@@ -129,15 +120,15 @@
 		
 		<div class="listUsers" th:unless="${#lists.size(users) == 1}" th:each="user : ${users}">
 			<a style="font-size: 23px;" th:href="@{/users/{userId}(userId=${user.userId})}" type="text" >[[${user.userId}]]</a><br>
-			<label style="color:green;">User name: </label><span style="font-size: 23px;" th:text="${user.username}"></span><br/>
-			<label style="color:green;">Name: </label><span style="font-size: 23px;" th:text="${user.name}"></span><br/>
-			<label style="color:green;">Password: </label><span style="visibility:hidden;" th:text="${user.password}"></span><br/>
-			<label style="color:green;">Address Line 1: </label><span style="font-size: 23px;" th:text="${user.address.addressLine1}"></span><br/>
-			<label style="color:green;">Address Line 2: </label><span style="font-size: 23px;" th:text="${user.address.addressLine2}"></span><br/>
-			<label style="color:green;">City: </label><span style="font-size: 23px;" th:text="${user.address.city}"></span><br/>
-			<label style="color:green;">Region: </label><span style="font-size: 23px;" th:text="${user.address.region}"></span><br/>
-			<label style="color:green;">Country: </label><span style="font-size: 23px;" th:text="${user.address.country}"></span><br/>
-			<label style="color:green;">Zip Code: </label><span style="font-size: 23px;" th:text="${user.address.zipCode}"></span>
+			<label class= "singleUserLabel">User name: </label><span style="font-size: 23px;" th:text="${user.username}"></span><br/>
+			<label class= "singleUserLabel">Name: </label><span style="font-size: 23px;" th:text="${user.name}"></span><br/>
+			<label class= "singleUserLabel">Password: </label><span style="visibility:hidden;" th:text="${user.password}"></span><br/>
+			<label class= "singleUserLabel">Address Line 1: </label><span style="font-size: 23px;" th:text="${user.address.addressLine1}"></span><br/>
+			<label class= "singleUserLabel">Address Line 2: </label><span style="font-size: 23px;" th:text="${user.address.addressLine2}"></span><br/>
+			<label class= "singleUserLabel">City: </label><span style="font-size: 23px;" th:text="${user.address.city}"></span><br/>
+			<label class= "singleUserLabel">Region: </label><span style="font-size: 23px;" th:text="${user.address.region}"></span><br/>
+			<label class= "singleUserLabel">Country: </label><span style="font-size: 23px;" th:text="${user.address.country}"></span><br/>
+			<label class= "singleUserLabel">Zip Code: </label><span style="font-size: 23px;" th:text="${user.address.zipCode}"></span>
 			<div th:each="account : ${user.accounts}">
 				<a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}">
 					<span style="font-size: 23px;" th:text="${account.accountName}"></span>
